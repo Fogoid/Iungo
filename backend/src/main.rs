@@ -1,18 +1,24 @@
-use axum::Router;
+pub mod api;
+
+use axum::routing::get;
 use tracing::{event, Level};
-
-use crate::api_base::Api;
-
-pub mod student_api;
-pub mod api_base;
 
 #[tokio::main]
 async fn main() {
-    let app = Router::new()
-        .merge(student_api::StudentAPI::register());
+    tracing_subscriber::fmt::init();
+    
+    let app = axum::Router::new()
+        .route("/", get(|| async {
+            event!{Level::INFO, "I'm Here"};
 
-    event!(Level::INFO, "Hello world");
+            "Hello, World!"
+        }));
 
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:8080").await.unwrap();
-    axum::serve(listener, app).await.unwrap();
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:8080")
+        .await
+        .unwrap();
+    axum::serve(listener, app)
+        .await
+        .unwrap();
 }
+    
