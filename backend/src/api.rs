@@ -1,7 +1,7 @@
 use axum::{extract::State, http::StatusCode, Json};
 use serde::{Deserialize, Serialize};
 use sqlx::MySqlPool;
-use tracing::{event, Level};
+use tracing::{event, Level, info};
 
 #[derive(sqlx::Type)]
 #[derive(Serialize, Deserialize)]
@@ -22,6 +22,7 @@ pub async fn new_post(
     Json(post): Json<Post>
 ) -> Result<String, StatusCode> {
     event!(Level::TRACE, "Starting new post request");
+    info!("New post request from {}", post.author);
 
     let query = sqlx::query!(
             r#"

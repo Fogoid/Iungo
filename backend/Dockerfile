@@ -7,11 +7,14 @@
 ################################################################################
 # Create a stage for building the application.
 
-ARG RUST_VERSION=1.73.0
+
+ARG RUST_VERSION=1.75.0
 ARG APP_NAME=backend
-FROM rust:${RUST_VERSION}-slim-bullseye AS build
+FROM rust:${RUST_VERSION} AS build
 ARG APP_NAME
 WORKDIR /app
+
+ENV DATABASE_URL="mysql://root:mysql@db:3306/social_media"
 
 # Build the application.
 # Leverage a cache mount to /usr/local/cargo/registry/
