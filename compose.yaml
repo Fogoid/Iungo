@@ -6,7 +6,7 @@ services:
     ports:
       - 8080:8080
     environment:
-      - DATABASE_URL=mysql://root:mysql@127.0.0.1:3306/social_media
+      - DATABASE_URL=mysql://root:mysql@db:3306/social_media
     env_file: .env
     depends_on:
       db:
