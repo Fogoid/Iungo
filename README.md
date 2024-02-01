@@ -1,17 +1,15 @@
 # Iungo
 
 Project of a social media app which will consist of the following components:
-- Backend (In development)
-- Consumer (In roadmap)
+- Backend
+- Consumer
 - Frontend (In roadmap)
 
 The focus of this project is to learn different technologies, such as:
 - Rust
 - MySql
 - Docker
-- Kubernetes
 - React
-- Golang
 
 ## Deployability
 
