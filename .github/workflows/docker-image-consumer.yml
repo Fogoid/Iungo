@@ -15,4 +15,4 @@ jobs:
           consumer
         ref: master
     - name: Build the Docker image
-      run: docker build ./consumer --file Dockerfile --tag consumer:$(date +%s)
+      run: docker build ./consumer --file ./consumer/Dockerfile --tag consumer:$(date +%s)
